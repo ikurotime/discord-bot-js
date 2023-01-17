@@ -1,4 +1,5 @@
-import { config } from 'dotenv'
+import dotenv from 'dotenv'
+dotenv.config()
 import {
   Client,
   Events,
@@ -7,7 +8,6 @@ import {
 } from 'discord.js'
 import { readFileSync } from 'node:fs'
 import { createCanvas, loadImage } from 'canvas'
-config()
 // Require the necessary discor classes
 const jsonConfig = JSON.parse(readFileSync('./config.json', 'utf-8'))
 const getWrapText = (text, length) => {
@@ -100,9 +100,9 @@ client.on(Events.MessageCreate, async (message) => {
         message.channel.send('Que pone ahi no se inglés')
         break
     }
-            
   }
 })
 
+console.log(process.env.BOT_TOKEN)
 // Log in to Discord with your client's token
-client.login(jsonConfig.BOT_TOKEN)
+client.login(process.env.BOT_TOKEN)
